@@ -1,0 +1,123 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(17, 17, 17, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3);
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-base);
+  max-width: 720px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: var(--border-width) solid var(--color-border-subtle);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-bottom: var(--border-width) solid var(--color-border-subtle);
+}
+
+.modal-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-size-xl);
+  margin: 0;
+  line-height: var(--line-height-tight);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  color: rgba(17, 17, 17, 0.6);
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast);
+}
+
+.modal-close:hover {
+  color: var(--color-accent);
+}
+
+.modal-body {
+  padding: var(--space-3);
+}
+
+.modal-section {
+  margin-bottom: var(--space-3);
+}
+
+.modal-section:last-child {
+  margin-bottom: 0;
+}
+
+.modal-company {
+  font-size: var(--text-size-lg);
+  font-weight: 500;
+  margin-bottom: var(--space-1);
+}
+
+.modal-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-size-sm);
+  color: rgba(17, 17, 17, 0.7);
+  margin-bottom: var(--space-1);
+  flex-wrap: wrap;
+}
+
+.modal-separator {
+  color: rgba(17, 17, 17, 0.4);
+}
+
+.modal-salary {
+  font-size: var(--text-size-md);
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+.modal-section-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-size-md);
+  margin: 0 0 var(--space-2);
+}
+
+.modal-description {
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+  color: rgba(17, 17, 17, 0.8);
+}
+
+.modal-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.modal-skill {
+  padding: 4px var(--space-2);
+  border-radius: var(--radius-base);
+  border: var(--border-width) solid var(--color-border-subtle);
+  font-size: var(--text-size-sm);
+  background-color: var(--color-background);
+}
