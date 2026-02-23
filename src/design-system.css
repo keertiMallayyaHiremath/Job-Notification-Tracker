@@ -496,6 +496,29 @@ a {
   max-width: 600px;
 }
 
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  cursor: pointer;
+  font-size: var(--text-size-sm);
+}
+
+.checkbox-label input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.field-slider {
+  width: 100%;
+  cursor: pointer;
+}
+
 /* Empty states */
 
 .empty-state {
@@ -511,6 +534,18 @@ a {
   font-size: var(--text-size-md);
   color: rgba(17, 17, 17, 0.7);
   line-height: var(--line-height-relaxed);
+}
+
+/* Banner */
+
+.banner {
+  padding: var(--space-3);
+  border-radius: var(--radius-base);
+  border: var(--border-width) solid var(--color-accent);
+  background-color: var(--color-error-bg);
+  margin-bottom: var(--space-3);
+  font-size: var(--text-size-sm);
+  color: var(--color-text);
 }
 
 @media (max-width: 960px) {

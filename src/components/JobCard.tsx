@@ -1,4 +1,5 @@
 import type { Job } from '../data/jobs'
+import { getMatchScoreColor } from '../utils/matchScore'
 import './JobCard.css'
 
 interface JobCardProps {
@@ -7,16 +8,25 @@ interface JobCardProps {
   onSave: (jobId: string) => void
   onApply: (url: string) => void
   isSaved: boolean
+  matchScore?: number
 }
 
-export function JobCard({ job, onView, onSave, onApply, isSaved }: JobCardProps) {
+export function JobCard({ job, onView, onSave, onApply, isSaved, matchScore }: JobCardProps) {
   const daysText = job.postedDaysAgo === 0 ? 'Today' : job.postedDaysAgo === 1 ? '1 day ago' : `${job.postedDaysAgo} days ago`
+  const scoreColor = matchScore !== undefined ? getMatchScoreColor(matchScore) : null
 
   return (
     <article className="job-card">
       <div className="job-card-header">
         <h3 className="job-card-title">{job.title}</h3>
-        <span className="job-card-source">{job.source}</span>
+        <div className="job-card-badges">
+          {matchScore !== undefined && (
+            <span className={`job-card-match-score job-card-match-score--${scoreColor}`}>
+              {matchScore}%
+            </span>
+          )}
+          <span className="job-card-source">{job.source}</span>
+        </div>
       </div>
       
       <div className="job-card-company">{job.company}</div>

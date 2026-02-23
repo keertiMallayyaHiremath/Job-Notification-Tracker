@@ -97,6 +97,8 @@ export function FilterBar({
         >
           <option value="latest">Latest</option>
           <option value="oldest">Oldest</option>
+          <option value="matchScore">Match Score</option>
+          <option value="salary">Salary</option>
         </select>
       </div>
     </div>

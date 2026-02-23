@@ -25,6 +25,46 @@
   line-height: var(--line-height-tight);
 }
 
+.job-card-badges {
+  display: flex;
+  gap: var(--space-1);
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.job-card-match-score {
+  font-size: var(--text-size-xs);
+  padding: 2px var(--space-1);
+  border-radius: 999px;
+  border: var(--border-width) solid;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.job-card-match-score--green {
+  background-color: var(--color-success-bg);
+  border-color: var(--color-success-border);
+  color: #2d5f3a;
+}
+
+.job-card-match-score--amber {
+  background-color: var(--color-warning-bg);
+  border-color: var(--color-warning-border);
+  color: #8b6914;
+}
+
+.job-card-match-score--neutral {
+  background-color: var(--color-background);
+  border-color: var(--color-border-subtle);
+  color: var(--color-text);
+}
+
+.job-card-match-score--grey {
+  background-color: var(--color-background);
+  border-color: var(--color-border-subtle);
+  color: rgba(17, 17, 17, 0.5);
+}
+
 .job-card-source {
   font-size: var(--text-size-xs);
   padding: 2px var(--space-1);
