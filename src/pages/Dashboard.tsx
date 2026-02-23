@@ -3,7 +3,9 @@ import { jobs, type Job } from '../data/jobs'
 import { JobCard } from '../components/JobCard'
 import { JobModal } from '../components/JobModal'
 import { FilterBar } from '../components/FilterBar'
+import { Toast } from '../components/Toast'
 import { calculateMatchScore, type UserPreferences } from '../utils/matchScore'
+import { getJobStatus, type JobStatus } from '../utils/jobStatus'
 import './Dashboard.css'
 
 interface JobWithScore extends Job {
@@ -19,12 +21,14 @@ export function Dashboard() {
 
   const [preferences, setPreferences] = useState<UserPreferences | null>(null)
   const [showOnlyMatches, setShowOnlyMatches] = useState(false)
+  const [toastMessage, setToastMessage] = useState<string | null>(null)
 
   const [keyword, setKeyword] = useState('')
   const [location, setLocation] = useState('')
   const [mode, setMode] = useState('')
   const [experience, setExperience] = useState('')
   const [source, setSource] = useState('')
+  const [status, setStatus] = useState('')
   const [sort, setSort] = useState('latest')
 
   useEffect(() => {
@@ -51,12 +55,13 @@ export function Dashboard() {
       const matchesMode = mode === '' || job.mode === mode
       const matchesExperience = experience === '' || job.experience === experience
       const matchesSource = source === '' || job.source === source
+      const matchesStatus = status === '' || getJobStatus(job.id) === status
 
       const matchesThreshold = !showOnlyMatches || 
         (preferences && job.matchScore >= preferences.minMatchScore)
 
       return matchesKeyword && matchesLocation && matchesMode && 
-             matchesExperience && matchesSource && matchesThreshold
+             matchesExperience && matchesSource && matchesStatus && matchesThreshold
     })
 
     if (sort === 'latest') {
@@ -76,7 +81,7 @@ export function Dashboard() {
     }
 
     return filtered
-  }, [jobsWithScores, keyword, location, mode, experience, source, sort, showOnlyMatches, preferences])
+  }, [jobsWithScores, keyword, location, mode, experience, source, status, sort, showOnlyMatches, preferences])
 
   const handleSave = (jobId: string) => {
     const newSavedJobs = savedJobs.includes(jobId)
@@ -89,6 +94,10 @@ export function Dashboard() {
 
   const handleApply = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer')
+  }
+
+  const handleStatusChange = (newStatus: JobStatus) => {
+    setToastMessage(`Status updated: ${newStatus}`)
   }
 
   return (
@@ -108,12 +117,14 @@ export function Dashboard() {
         experience={experience}
         source={source}
         sort={sort}
+        status={status}
         onKeywordChange={setKeyword}
         onLocationChange={setLocation}
         onModeChange={setMode}
         onExperienceChange={setExperience}
         onSourceChange={setSource}
         onSortChange={setSort}
+        onStatusChange={setStatus}
       />
 
       {preferences && (
@@ -148,12 +159,16 @@ export function Dashboard() {
               onApply={handleApply}
               isSaved={savedJobs.includes(job.id)}
               matchScore={preferences ? job.matchScore : undefined}
+              onStatusChange={handleStatusChange}
             />
           ))}
         </div>
       )}
 
       <JobModal job={selectedJob} onClose={() => setSelectedJob(null)} />
+      {toastMessage && (
+        <Toast message={toastMessage} onClose={() => setToastMessage(null)} />
+      )}
     </div>
   )
 }

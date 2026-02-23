@@ -10,6 +10,7 @@ import {
   type Digest 
 } from '../utils/digestEngine'
 import { getMatchScoreColor } from '../utils/matchScore'
+import { getStatusUpdates } from '../utils/jobStatus'
 import './Digest.css'
 
 export function Digest() {
@@ -76,6 +77,18 @@ export function Digest() {
     })
   }
 
+  const formatDateTime = (dateStr: string) => {
+    return new Date(dateStr).toLocaleString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit'
+    })
+  }
+
+  const statusUpdates = getStatusUpdates()
+  const recentUpdates = statusUpdates.slice(0, 5)
+
   if (!preferences) {
     return (
       <div className="page-container">
@@ -98,6 +111,33 @@ export function Digest() {
       <div className="digest-demo-note">
         Demo Mode: Daily 9AM trigger simulated manually.
       </div>
+
+      {recentUpdates.length > 0 && (
+        <div className="status-updates-section">
+          <h2 className="status-updates-title">Recent Status Updates</h2>
+          <div className="status-updates-list">
+            {recentUpdates.map((update) => {
+              const job = jobs.find(j => j.id === update.jobId)
+              if (!job) return null
+              
+              return (
+                <div key={`${update.jobId}-${update.updatedAt}`} className="status-update-item">
+                  <div className="status-update-info">
+                    <div className="status-update-job">{job.title}</div>
+                    <div className="status-update-company">{job.company}</div>
+                  </div>
+                  <div className="status-update-meta">
+                    <span className={`status-update-badge status-update-badge--${update.status.toLowerCase().replace(' ', '-')}`}>
+                      {update.status}
+                    </span>
+                    <span className="status-update-date">{formatDateTime(update.updatedAt)}</span>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
 
       {!digest ? (
         <>

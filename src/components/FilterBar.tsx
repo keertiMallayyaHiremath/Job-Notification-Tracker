@@ -7,12 +7,14 @@ interface FilterBarProps {
   experience: string
   source: string
   sort: string
+  status?: string
   onKeywordChange: (value: string) => void
   onLocationChange: (value: string) => void
   onModeChange: (value: string) => void
   onExperienceChange: (value: string) => void
   onSourceChange: (value: string) => void
   onSortChange: (value: string) => void
+  onStatusChange?: (value: string) => void
 }
 
 export function FilterBar({
@@ -22,12 +24,14 @@ export function FilterBar({
   experience,
   source,
   sort,
+  status,
   onKeywordChange,
   onLocationChange,
   onModeChange,
   onExperienceChange,
   onSourceChange,
-  onSortChange
+  onSortChange,
+  onStatusChange
 }: FilterBarProps) {
   return (
     <div className="filter-bar">
@@ -89,6 +93,20 @@ export function FilterBar({
           <option value="Naukri">Naukri</option>
           <option value="Indeed">Indeed</option>
         </select>
+
+        {onStatusChange && (
+          <select
+            className="filter-select"
+            value={status || ''}
+            onChange={(e) => onStatusChange(e.target.value)}
+          >
+            <option value="">All Statuses</option>
+            <option value="Not Applied">Not Applied</option>
+            <option value="Applied">Applied</option>
+            <option value="Rejected">Rejected</option>
+            <option value="Selected">Selected</option>
+          </select>
+        )}
 
         <select
           className="filter-select"

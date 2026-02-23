@@ -107,6 +107,71 @@
   margin-bottom: var(--space-2);
 }
 
+.job-card-status {
+  margin-bottom: var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: var(--border-width) solid var(--color-border-subtle);
+}
+
+.job-card-status-label {
+  font-size: var(--text-size-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(17, 17, 17, 0.6);
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
+.job-card-status-buttons {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.job-card-status-button {
+  font-size: var(--text-size-xs);
+  padding: 4px 8px;
+  border-radius: var(--radius-base);
+  border: var(--border-width) solid var(--color-border-subtle);
+  background-color: var(--color-background);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-body);
+}
+
+.job-card-status-button:hover {
+  border-color: var(--color-text);
+}
+
+.job-card-status-button.active {
+  font-weight: 600;
+}
+
+.job-card-status-button--neutral.active {
+  background-color: var(--color-background);
+  border-color: var(--color-border-subtle);
+  color: var(--color-text);
+}
+
+.job-card-status-button--blue.active {
+  background-color: #E3F2FD;
+  border-color: #2196F3;
+  color: #1565C0;
+}
+
+.job-card-status-button--red.active {
+  background-color: var(--color-error-bg);
+  border-color: var(--color-error-border);
+  color: var(--color-accent);
+}
+
+.job-card-status-button--green.active {
+  background-color: var(--color-success-bg);
+  border-color: var(--color-success-border);
+  color: #2d5f3a;
+}
+
 .job-card-footer {
   display: flex;
   justify-content: space-between;

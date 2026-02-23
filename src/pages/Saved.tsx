@@ -2,6 +2,8 @@ import { useState, useMemo } from 'react'
 import { jobs, type Job } from '../data/jobs'
 import { JobCard } from '../components/JobCard'
 import { JobModal } from '../components/JobModal'
+import { Toast } from '../components/Toast'
+import type { JobStatus } from '../utils/jobStatus'
 import '../pages/Dashboard.css'
 
 export function Saved() {
@@ -10,6 +12,7 @@ export function Saved() {
     const saved = localStorage.getItem('savedJobs')
     return saved ? JSON.parse(saved) : []
   })
+  const [toastMessage, setToastMessage] = useState<string | null>(null)
 
   const savedJobsList = useMemo(() => {
     return jobs.filter(job => savedJobs.includes(job.id))
@@ -23,6 +26,10 @@ export function Saved() {
 
   const handleApply = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer')
+  }
+
+  const handleStatusChange = (newStatus: JobStatus) => {
+    setToastMessage(`Status updated: ${newStatus}`)
   }
 
   return (
@@ -46,12 +53,16 @@ export function Saved() {
               onSave={handleSave}
               onApply={handleApply}
               isSaved={true}
+              onStatusChange={handleStatusChange}
             />
           ))}
         </div>
       )}
 
       <JobModal job={selectedJob} onClose={() => setSelectedJob(null)} />
+      {toastMessage && (
+        <Toast message={toastMessage} onClose={() => setToastMessage(null)} />
+      )}
     </div>
   )
 }

@@ -9,6 +9,93 @@
   color: rgba(17, 17, 17, 0.7);
 }
 
+.status-updates-section {
+  margin-bottom: var(--space-4);
+  padding: var(--space-3);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-base);
+  border: var(--border-width) solid var(--color-border-subtle);
+}
+
+.status-updates-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-size-lg);
+  margin: 0 0 var(--space-2);
+}
+
+.status-updates-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.status-update-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border-radius: var(--radius-base);
+  background-color: var(--color-background);
+  border: var(--border-width) solid var(--color-border-subtle);
+}
+
+.status-update-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.status-update-job {
+  font-size: var(--text-size-sm);
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.status-update-company {
+  font-size: var(--text-size-xs);
+  color: rgba(17, 17, 17, 0.6);
+}
+
+.status-update-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+.status-update-badge {
+  font-size: var(--text-size-xs);
+  padding: 2px var(--space-1);
+  border-radius: 999px;
+  border: var(--border-width) solid;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-update-badge--applied {
+  background-color: #E3F2FD;
+  border-color: #2196F3;
+  color: #1565C0;
+}
+
+.status-update-badge--rejected {
+  background-color: var(--color-error-bg);
+  border-color: var(--color-error-border);
+  color: var(--color-accent);
+}
+
+.status-update-badge--selected {
+  background-color: var(--color-success-bg);
+  border-color: var(--color-success-border);
+  color: #2d5f3a;
+}
+
+.status-update-date {
+  font-size: var(--text-size-xs);
+  color: rgba(17, 17, 17, 0.5);
+  white-space: nowrap;
+}
+
 .digest-actions {
   display: flex;
   gap: var(--space-2);
