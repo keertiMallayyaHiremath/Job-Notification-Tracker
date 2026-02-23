@@ -430,6 +430,33 @@ a {
   max-width: 720px;
 }
 
+/* Page layout */
+
+.app-content {
+  flex: 1;
+  padding: var(--space-5) var(--space-4);
+  display: flex;
+  justify-content: center;
+}
+
+.page-container {
+  max-width: 720px;
+  width: 100%;
+}
+
+.page-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-size-2xl);
+  line-height: var(--line-height-tight);
+  margin: 0 0 var(--space-2);
+}
+
+.page-subtitle {
+  margin: 0;
+  font-size: var(--text-size-md);
+  color: rgba(17, 17, 17, 0.6);
+}
+
 @media (max-width: 960px) {
   .app-main {
     flex-direction: column;
@@ -439,6 +466,10 @@ a {
   .secondary-panel {
     max-width: 100%;
     flex: 1;
+  }
+
+  .app-content {
+    padding: var(--space-4) var(--space-3);
   }
 }
 
